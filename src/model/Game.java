@@ -7,6 +7,19 @@ public class Game {
 		famous = new Hall[QUANTITY_HALL];
 	}
 	
-	
+	public void addHall(String name, int score) {
+		boolean stop = false;
+		Hall h = new Hall(name, score);
+		for (int i = 0; i < famous.length && !stop; i++) {
+			if(famous[i] != null) {
+				if(famous[i].getScore()> h.getScore()) {
+					
+				}
+			}
+			else {
+				famous[i] = h;				
+			}
+		}
+	}
 	
 }
