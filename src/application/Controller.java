@@ -1,5 +1,6 @@
 package application;
 
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -8,7 +9,7 @@ import javafx.stage.Stage;
 
 public class Controller {
 	public void init(Stage s) {
-		Pane p = new Pane();
+		Group p = new Group();
 		Button b = new Button();
 		b.setShape(new Circle(40));
 		b.setMinSize(80, 80);
