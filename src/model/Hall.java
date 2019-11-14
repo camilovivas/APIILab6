@@ -1,6 +1,8 @@
 package model;
 
-public class Hall {
+import java.io.Serializable;
+
+public class Hall implements Serializable, Comparable<Hall> {
 	private String name;
 	private int score;
 
@@ -28,6 +30,22 @@ public class Hall {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+
+	@Override
+	public int compareTo(Hall arg) {
+		int retorno =0;
+		if(score == arg.getScore()) {
+			retorno =0;
+		}
+		else if(score > arg.getScore()) {
+			retorno = 1;
+		}
+		else {
+			retorno = -1;
+		}
+		return retorno;
 	}
 	
 	
