@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.input.MouseEvent;
+
 public class Sphere {
 	
 	private int x;
@@ -9,8 +11,15 @@ public class Sphere {
 		
 	}
 	
-	public void Stop() {
-		//formula de la distancia
+	public void move() {
+		for(int i = 0; true; i++) {
+			
+		}
+	}
+	public void Stop(MouseEvent  event) {
+		double x = event.getX();
+		double y = event.getY();
+		double distan = Math.sqrt(a);
 	}
 
 }
