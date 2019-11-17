@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class controllerHall {
+public class ControllerHall {
 	
 	public static int QUANTITY_HALL = 10;
 	private Hall[] famous1;
 	private Hall[] famous2;
 	private Hall[] famous3;
 	
-	public controllerHall() {
+	public ControllerHall() {
 		famous1 = new Hall[QUANTITY_HALL];
 	}
 	

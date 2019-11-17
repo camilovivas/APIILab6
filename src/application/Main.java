@@ -8,14 +8,15 @@ import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 	private Controller c;
+	
+	public Main() {
+		c = new Controller();		
+	}
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			c = new Controller();
-			c.init(primaryStage);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+			c.welcome(primaryStage);
+			primaryStage.setTitle("Atrapalas Ya");
+	
 	}
 	
 	public static void main(String[] args) {
