@@ -53,12 +53,8 @@ public class Controller {
 		
 	}
 
-	public void init(Stage s) {
-		Scene sc = new Scene(group);
-		s.setScene(sc);
-		s.show();
-		
-	}
+	
+	
 
 	public void play(Stage s) {
 		VBox v = new VBox(2);
@@ -100,7 +96,18 @@ public class Controller {
 	}
 
 	public void showHall(){
-		//TODO
+		Stage st = new Stage();
+		VBox vb = new VBox(2);
+		HBox hb = new HBox();
+		Text tx = new Text(game.namesHall1());
+		Text tx1 = new Text(game.namesHall2());
+		Text tx2 = new Text(game.namesHall3());
+		hb.getChildren().addAll(tx,tx1,tx2);
+		vb.getChildren().add(hb);
+		
+		Scene sc = new Scene(vb);
+		st.setScene(sc);
+		st.show();
 	}
 
 	public void stop(MouseEvent e) {
@@ -118,6 +125,7 @@ public class Controller {
 					stop(event);
 					boolean win = game.winner();
 					if(win == true) {
+						s.close();
 						if(game.podium()== true) {
 							winer();
 						}

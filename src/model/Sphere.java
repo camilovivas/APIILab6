@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -14,9 +15,11 @@ public class Sphere implements Serializable {
 	private int y;
 	private int diametro;
 	private boolean stop;
+	private Group group;
 	
-	public Sphere(int x, int y, int diametro, Paint p) {
+	public Sphere(int x, int y, int diametro, Paint p, Group group) {
 		circle = new Circle(x,y,diametro, p);
+		this.group = group;
 		this.diametro = diametro;
 		this.stop=false;
 	}
@@ -75,7 +78,7 @@ public class Sphere implements Serializable {
 		if(circle1.getCenterY()==0) {
 			z = 2;
 		}
-		if(circle1.getCenterY()==400) {
+		if(circle1.getCenterY()== 400) {
 			z =3;
 		}
 		if( circle1.getCenterX() == 400) {

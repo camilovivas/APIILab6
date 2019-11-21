@@ -34,7 +34,7 @@ public class Game {
 		this.level = level;
 		this.group= group;
 		hall = new ControllerHall();
-//		hall.generalRead(level);
+		hall.generalRead(level);
 		initialize();
 		timeStart = System.currentTimeMillis();
 	}
@@ -63,13 +63,13 @@ public class Game {
 //	LEVEL1
 	public void initLevel1() {
 		level1 = new Sphere[SPHERES_LEVEL1];
-		Sphere sphere0 = new Sphere(20,20,20, Color.DARKGREEN);
+		Sphere sphere0 = new Sphere(20,20,20, Color.DARKGREEN, group);
 		level1[0] = sphere0;
-		Sphere sphere1 = new Sphere(0,80,30, Color.RED);
+		Sphere sphere1 = new Sphere(0,80,30, Color.RED, group);
 		level1[1] = sphere1;
-		Sphere sphere2 = new Sphere(20, 200,20, Color.YELLOW);
+		Sphere sphere2 = new Sphere(20, 200,20, Color.YELLOW, group);
 		level1[2] = sphere2;
-		Sphere sphere3 = new Sphere(200,200,15, Color.BLUE);
+		Sphere sphere3 = new Sphere(200,200,15, Color.BLUE, group);
 		level1[3] = sphere3;
 		
 	}
@@ -98,8 +98,8 @@ public class Game {
 		for (int i = 0; i < level1.length; i++) {
 			level2[i] = level1[i];
 		}
-		level2[4] = new Sphere(80,80,19, Color.BROWN);
-		level2[5] = new Sphere(90,150,30, Color.BLUEVIOLET);
+		level2[4] = new Sphere(80,80,19, Color.BROWN, group);
+		level2[5] = new Sphere(90,150,30, Color.BLUEVIOLET, group);
 		
 	}
 	
@@ -123,8 +123,8 @@ public class Game {
 		for (int i = 0; i < level2.length; i++) {
 			level3[i] = level2[i];
 		}
-		level3[6] = new Sphere(70,165,12, Color.DARKGREY);
-		level3[7] = new Sphere(200,100,23, Color.CYAN);
+		level3[6] = new Sphere(70,165,12, Color.DARKGREY, group);
+		level3[7] = new Sphere(200,100,23, Color.CYAN, group);
 		
 	}
 	public void showLevel3() {		
@@ -172,7 +172,7 @@ public class Game {
 
 	public boolean winner() {
 		boolean retorno = false;
-		int contador =1;
+		int contador =0;
 		if(level == 1) {
 			for (int i = 0; i < level1.length; i++) {
 				if(level1[i].getStop() == true) {
@@ -254,6 +254,16 @@ public class Game {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public String namesHall1() {
+		return hall.person1();
+	}
+	public String namesHall2() {
+		return hall.person1();
+	}
+	public String namesHall3() {
+		return hall.person1();
 	}
 	
 	

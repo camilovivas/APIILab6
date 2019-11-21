@@ -16,6 +16,8 @@ public class ControllerHall {
 	
 	public ControllerHall() {
 		famous1 = new Hall[QUANTITY_HALL];
+		famous2 = new Hall[QUANTITY_HALL];
+		famous3 = new Hall[QUANTITY_HALL];
 	}
 	
 //	METHODS LEVEL 1
@@ -52,11 +54,13 @@ public class ControllerHall {
 	public void organizeHall() {
 		for (int i = 1; i < famous1.length; i++) {
 			for (int j = i; j > 0; j--) {
-				int com = famous1[j-1].compareTo(famous1[j]);
-				if(com == 1) {
-					Hall temp = famous1[j];
-					famous1[j] = famous1[j-1];
-					famous1[j-1] = temp;
+				if(famous1[j-1] !=null && famous1[j] != null ) {
+					int com = famous1[j-1].compareTo(famous1[j]);
+					if(com == 1) {
+						Hall temp = famous1[j];
+						famous1[j] = famous1[j-1];
+						famous1[j-1] = temp;
+					}
 				}
 			}
 		}
@@ -122,6 +126,7 @@ public class ControllerHall {
 	public void organizeHallLevel2() {
 		for (int i = 1; i < famous2.length; i++) {
 			for (int j = i; j > 0; j--) {
+				if(famous2[j-1] !=null && famous2[j] != null ) {
 				int com = famous2[j-1].compareTo(famous2[j]);
 				if(com == 1) {
 					Hall temp = famous2[j];
@@ -129,11 +134,12 @@ public class ControllerHall {
 					famous2[j-1] = temp;
 				}
 			}
+			}
 		}
 	}
 	
 	public boolean HallLevel2IsFull() {
-		return (famous2[famous2.length] !=  null);
+		return (famous2[famous2.length-1] !=  null);
 	}
 	
 	public void saveHalllevel2() {
@@ -193,6 +199,7 @@ public class ControllerHall {
 	public void organizeHallLevel3() {
 		for (int i = 1; i < famous3.length; i++) {
 			for (int j = i; j > 0; j--) {
+				if(famous1[j-1] !=null && famous1[j] != null ) {
 				int com = famous3[j-1].compareTo(famous3[j]);
 				if(com == 1) {
 					Hall temp = famous3[j];
@@ -200,11 +207,12 @@ public class ControllerHall {
 					famous3[j-1] = temp;
 				}
 			}
+			}
 		}
 	}
 	
 	public boolean HallLevel3IsFull() {
-		return (famous3[famous3.length] !=  null);
+		return (famous3[famous3.length-1] !=  null);
 	}
 	
 	public void saveHalllevel3() {
@@ -241,6 +249,34 @@ public class ControllerHall {
 			readHalllevel3();
 		}
 	}
+	
+	public String person1() {
+		String person = "";
+		for (int i = 0; i < famous1.length; i++) {
+			if(famous1[i]!=null) {
+				person += "nombre =  "+famous1[i].getName()+" puntaje"+famous1[i].getScore()+"\n";				
+			}
+		}
+		return person;
+	}
+	public String person2() {
+		String person = "";
+		for (int i = 0; i < famous2.length; i++) {
+			if(famous2[i]!=null) {
+				person += "nombre =  "+famous2[i].getName()+" puntaje"+famous2[i].getScore()+"\n";
+			}
+		}
+		return person;
+	}
 
+	public String person3() {
+		String person = "";
+		for (int i = 0; i < famous3.length; i++) {
+			if(famous3[i]!=null) {
+				person += "nombre =  "+famous3[i].getName()+"  puntaje"+famous3[i].getScore()+"\n";
+			}
+		}	
+		return person;
+	}
 
 }
