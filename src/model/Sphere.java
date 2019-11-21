@@ -1,17 +1,18 @@
 package model;
 
+import java.io.Serializable;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-public class Sphere {
+public class Sphere implements Serializable {
 	private Circle circle;
 	private int x;
 	private int y;
 	private int diametro;
-	private GraphicsContext gc;
 	
 	public Sphere(int x, int y, int diametro, Paint p) {
 		circle = new Circle(x,y,diametro, p);

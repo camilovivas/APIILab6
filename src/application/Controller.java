@@ -75,10 +75,12 @@ public class Controller {
 			play(s);
 		}
 		if(level.compareTo("level 2")==0) {
-//			game = new Game(2);
+			game = new Game(2, group);
+			play(s);
 		}
 		if(level.compareTo("level 3")==0) {
-//			game = new Game(3);
+			game = new Game(3, group);
+			play(s);
 		}
 		
 	}
