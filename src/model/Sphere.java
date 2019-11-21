@@ -95,7 +95,7 @@ public class Sphere implements Serializable {
 	public void stopSphere(MouseEvent  event) {
 		double Mx = event.getX();
 		double My = event.getY();
-		double distan = Math.sqrt(((Mx-x)*(Mx-x))-((My-y)*(My-y)));
+		double distan = Math.sqrt(((x-Mx)*(x-Mx))+((y-My)*(y-My)));
 		System.out.println(distan);
 		if(distan <= diametro) {
 			this.stop= true;

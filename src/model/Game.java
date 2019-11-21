@@ -34,6 +34,7 @@ public class Game {
 		this.level = level;
 		this.group= group;
 		hall = new ControllerHall();
+//		hall.generalRead(level);
 		initialize();
 		timeStart = System.currentTimeMillis();
 	}
@@ -43,7 +44,6 @@ public class Game {
 		if(level == 1) {
 			initLevel1();
 			showLevel1();
-
 			threadLevel1();
 			
 		}
@@ -82,13 +82,13 @@ public class Game {
 	
 	public void threadLevel1() {
 		HiloSphere hs = new HiloSphere(level1[0]);
-//		HiloSphere hs2 = new HiloSphere(level1[1]);
-//		HiloSphere hs3 = new HiloSphere(level1[2]);
-//		HiloSphere hs4 = new HiloSphere(level1[3]);
+		HiloSphere hs2 = new HiloSphere(level1[1]);
+		HiloSphere hs3 = new HiloSphere(level1[2]);
+		HiloSphere hs4 = new HiloSphere(level1[3]);
 		hs.start();
-//		hs2.start();
-//		hs3.start();
-//		hs4.start();		
+		hs2.start();
+		hs3.start();
+		hs4.start();		
 	}
 	
 //	LEVEL2

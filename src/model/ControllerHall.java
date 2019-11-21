@@ -21,11 +21,14 @@ public class ControllerHall {
 //	METHODS LEVEL 1
 	public boolean clasificaLevel1(double time) {
 		boolean retorno = false;
-		for (int i = 0; i < famous1.length; i++) {
+		for (int i = 0; i < famous1.length && !retorno; i++) {
 			if(famous1[i]!= null){
 				if(famous1[i].getScore() > time) {
 					retorno = true;
 				}
+			}
+			else {
+				retorno = true;
 			}
 		}
 		return retorno;
@@ -41,6 +44,7 @@ public class ControllerHall {
 			if(famous1[i] == null) {
 					famous1[i]= h;
 					organizeHall();
+					saveHalllevel1();
 			}
 		}
 	}
@@ -88,11 +92,14 @@ public class ControllerHall {
 //	METHODS LEVEL 2
 	public boolean clasificaLevel2(double time) {
 		boolean retorno = false;
-		for (int i = 0; i < famous2.length; i++) {
+		for (int i = 0; i < famous2.length && !retorno; i++) {
 			if(famous2[i]!= null){
 				if(famous2[i].getScore() > time) {
 					retorno = true;
 				}
+			}
+			else {
+				retorno = true;
 			}
 		}
 		return retorno;
@@ -107,6 +114,7 @@ public class ControllerHall {
 			if(famous2[i] == null) {
 					famous2[i]= h;
 					organizeHall();
+					saveHalllevel2();
 			}
 		}
 	}
@@ -154,11 +162,14 @@ public class ControllerHall {
 //	METHOODS LEVEL 3
 	public boolean clasificaLevel3(double time) {
 		boolean retorno = false;
-		for (int i = 0; i < famous3.length; i++) {
+		for (int i = 0; i < famous3.length && !retorno; i++) {
 			if(famous3[i]!= null){
 				if(famous3[i].getScore() > time) {
 					retorno = true;
 				}
+			}
+			else {
+				retorno = true;
 			}
 		}
 		return retorno;
@@ -174,6 +185,7 @@ public class ControllerHall {
 			if(famous3[i] == null) {
 					famous3[i]= h;
 					organizeHall();
+					saveHalllevel3();
 			}
 		}
 	}
@@ -216,6 +228,18 @@ public class ControllerHall {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public  void generalRead(int lvl) {
+		if(lvl == 1) {
+			readHalllevel1();
+		}
+		if(lvl == 2) {
+			readHalllevel2();
+		}
+		if(lvl == 3) {
+			readHalllevel3();
+		}
 	}
 
 

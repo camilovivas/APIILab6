@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -22,49 +23,43 @@ public class Controller {
 	private Game game;
 	private Group group;
 	
+	public void aboveGame() {
+		Stage st = new Stage();
+		VBox p = new VBox();
+		Text tx = new Text("juego desarrollado por Camilo Vivas, consta en darle click a cada bola hasta que todas se detengan");
+		p.getChildren().add(tx);
+		Scene sc = new Scene(p);
+		st.setScene(sc);
+		st.show();
+	}
+
+	public void chargeGame() {
+		//TODO
+	}
+
+	public void create(String level, Stage s) {
+		if(level.compareTo("level 1")==0) {
+			game = new Game(1, group);
+			play(s);
+		}
+		if(level.compareTo("level 2")==0) {
+			game = new Game(2, group);
+			play(s);
+		}
+		if(level.compareTo("level 3")==0) {
+			game = new Game(3, group);
+			play(s);
+		}
+		
+	}
+
 	public void init(Stage s) {
 		Scene sc = new Scene(group);
 		s.setScene(sc);
 		s.show();
 		
 	}
-	
-	public void welcome(Stage s) {
-		group = new Group();
-		group.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-			@Override
-			public void handle(MouseEvent event) {
-				MouseButton mb = event.getButton();
-				if(mb == MouseButton.PRIMARY) {
-					stop(event);
-					boolean win = game.winner();
-					if(win == true) {
-						if(game.podium()== true) {
-							winer();
-						}
-					}
-				}
-				
-			}
-		});
-		VBox vb = new VBox();
-		Text tx = new Text ("Welcome");
-		Text tx2 = new Text ("Selecciona el nivel que desea jugar");
-		ChoiceBox<String> c = new ChoiceBox<String>();
-		c.getItems().add("level 1");
-		c.getItems().add("level 2");
-		c.getItems().add("level 3");
-		c.setOnAction(e->{
-			create(c.getValue(), s);
-			
-		});
-		vb.getChildren().addAll(tx, tx2, c);
-		Scene sc = new Scene(vb);
-		s.setScene(sc);
-		s.show();
-		
-	}
 	public void play(Stage s) {
 		VBox v = new VBox(2);
 		HBox h = new HBox();
@@ -99,30 +94,62 @@ public class Controller {
 		s.setScene(sc);
 		s.show();
 	}
-	
-	public void chargeGame() {
-		//TODO
-	}
-	
+
 	public void saveGame() {
 		//TODO
 	}
-	
+
 	public void showHall(){
 		//TODO
 	}
-	
-	public void aboveGame() {
-		//TODO
-	}
-	
+
 	public void stop(MouseEvent e) {
 		game.stop(e);
 	}
+
+	public void welcome(Stage s) {
+		group = new Group();
+		group.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	
+			@Override
+			public void handle(MouseEvent event) {
+				MouseButton mb = event.getButton();
+				if(mb == MouseButton.PRIMARY) {
+					stop(event);
+					boolean win = game.winner();
+					if(win == true) {
+						if(game.podium()== true) {
+							winer();
+						}
+						else {
+							winer2();
+						}
+					}
+				}
+				
+			}
+		});
+		VBox vb = new VBox();
+		Text tx = new Text ("Welcome");
+		Text tx2 = new Text ("Selecciona el nivel que desea jugar");
+		ChoiceBox<String> c = new ChoiceBox<String>();
+		c.getItems().add("level 1");
+		c.getItems().add("level 2");
+		c.getItems().add("level 3");
+		c.setOnAction(e->{
+			create(c.getValue(), s);
+			
+		});
+		vb.getChildren().addAll(tx, tx2, c);
+		Scene sc = new Scene(vb);
+		s.setScene(sc);
+		s.show();
+		
+	}
+
 	public void winer() {
 		Stage st = new Stage();
-		VBox vb = new VBox(2);
+		VBox vb = new VBox(4);
 		Text tx = new Text("FELICIDADES GANASTE Y CLASIFIASTE AL PODIUM");
 		Text tx2 = new Text("INGRESA TU NOMBRE");
 		TextField tf = new TextField();
@@ -130,8 +157,7 @@ public class Controller {
 		bt.setOnAction(e->{
 			String name = tf.getText(); 
 			game.addHall(name);
-			
-			
+			welcome(st);
 		});
 		vb.getChildren().addAll(tx,tx2,tf,bt);
 		Scene sc = new Scene(vb, 300,300);
@@ -139,20 +165,22 @@ public class Controller {
 		st.show();
 		
 	}
-	
-	public void create(String level, Stage s) {
-		if(level.compareTo("level 1")==0) {
-			game = new Game(1, group);
-			play(s);
-		}
-		if(level.compareTo("level 2")==0) {
-			game = new Game(2, group);
-			play(s);
-		}
-		if(level.compareTo("level 3")==0) {
-			game = new Game(3, group);
-			play(s);
-		}
-		
+
+	public void winer2() {
+		Stage st = new Stage();
+		VBox vb = new VBox();
+		Text tx = new Text("FELICIDADES GANASTE");
+		Button bt = new Button("salir");
+		bt.setOnAction(e->{
+			st.close();
+		});
+		Button bt2 = new Button("jugar otra vez");
+		bt2.setOnAction(e->{
+			welcome(st);
+		});
+		vb.getChildren().addAll(tx,bt,bt2);
+		Scene sc = new Scene(vb, 300,300);
+		st.setScene(sc);
+		st.show();
 	}
 }
