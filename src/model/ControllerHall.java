@@ -63,7 +63,7 @@ public class ControllerHall {
 	}
 	
 	public boolean HallLevel1IsFull() {
-		return (famous1[famous1.length] !=  null);
+		return (famous1[famous1.length-1] !=  null);
 	}
 	
 	public void saveHalllevel1() {
