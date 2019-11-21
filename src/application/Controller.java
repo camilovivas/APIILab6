@@ -21,20 +21,17 @@ import model.Game;
 
 public class Controller {
 	private Game game;
-	private GraphicsContext gc;
+	private Group group;
 	
 	public void init(Stage s) {
-		Group p = new Group();
-		Canvas canvas = new Canvas(500,500);
-		gc = canvas.getGraphicsContext2D();
-		p.getChildren().add(canvas);
-		Scene sc = new Scene(p);
+		Scene sc = new Scene(group);
 		s.setScene(sc);
 		s.show();
 		
 	}
 	
 	public void welcome(Stage s) {
+		group = new Group();
 		VBox vb = new VBox();
 		Text tx = new Text ("Welcome");
 		Text tx2 = new Text ("Selecciona el nivel que desea jugar");
@@ -66,23 +63,22 @@ public class Controller {
 		mb2.getItems().addAll(mi3, mi4);
 		MenuBar mb = new MenuBar(mb1,mb2);
 		h.getChildren().add(mb);
-		Group p = new Group();
-		v.getChildren().addAll(h,p);
-		Scene sc = new Scene(v);
+		v.getChildren().addAll(h,group);
+		Scene sc = new Scene(v, 400,400);
 		s.setScene(sc);
 		s.show();
 	}
 	
 	public void create(String level, Stage s) {
 		if(level.compareTo("level 1")==0) {
-//			game = new Game(1, gc);
+			game = new Game(1, group);
 			play(s);
 		}
 		if(level.compareTo("level 2")==0) {
-			game = new Game(2, gc);
+//			game = new Game(2);
 		}
 		if(level.compareTo("level 3")==0) {
-			game = new Game(3, gc);
+//			game = new Game(3);
 		}
 		
 	}

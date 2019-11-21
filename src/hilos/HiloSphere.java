@@ -6,16 +6,23 @@ import model.Sphere;
 public class HiloSphere extends Thread{
 	private Sphere sphere;
 	
-	public HiloSphere(Main m, Sphere s) {
+	public HiloSphere(Sphere s) {
 		this.sphere = s;
 	}
 	
 	public void run() {
-		mover();
+		while(true) {
+			sphere.move(sphere.getCircle());
+			
+			try {
+				sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
-	public void mover() {
-		
-	}
+	
 
 }

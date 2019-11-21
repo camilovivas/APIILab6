@@ -2,16 +2,19 @@ package model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 
 public class Sphere {
-	
+	private Circle circle;
 	private int x;
 	private int y;
 	private int diametro;
 	private GraphicsContext gc;
 	
-	public Sphere(int x, int y, int diametro, GraphicsContext gc) {
-		this.gc = gc;
+	public Sphere(int x, int y, int diametro, Paint p) {
+		circle = new Circle(x,y,diametro, p);
 		this.diametro = diametro;
 	}
 	
@@ -39,16 +42,31 @@ public class Sphere {
 		this.y = y;
 	}
 
+	
 
 
-	public void move() {
-		while(true) {
-			if(x <= 300 ) {
-				x =+ 10; 
-			}
-			
-//			gc.fillOval(x, y, 20, 20);
+	public Circle getCircle() {
+		return circle;
+	}
+
+
+
+	public void move(Circle circle1) {
+		if( circle1.getLayoutX() == 400) {
+			x = 1;
 		}
+		if(circle1.getLayoutX() == 0) {
+			x = 0;
+		}
+		if(x == 1) {
+//			circle.setLayoutX(circle.getLayoutX()-10);
+			circle1.setCenterX(circle1.getCenterX()-10);
+		}
+		if(x == 0) {
+//			circle.setLayoutX(circle.getLayoutX()+10);
+			circle1.setCenterX(circle1.getCenterX()+10);
+		}
+		
 	}
 	public void Stop(MouseEvent  event) {
 		double Mx = event.getX();
