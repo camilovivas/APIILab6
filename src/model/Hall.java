@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Hall implements Serializable, Comparable<Hall> {
 	private String name;
-	private int score;
+	private double score;
 
 	
-	public Hall(String name, int score) {
+	public Hall(String name, double score) {
 		this.name = name;
 		this.score = score;
 	}
@@ -23,12 +23,12 @@ public class Hall implements Serializable, Comparable<Hall> {
 	}
 
 
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
 
 
-	public void setScore(int score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 

@@ -13,10 +13,12 @@ public class Sphere implements Serializable {
 	private int x;
 	private int y;
 	private int diametro;
+	private boolean stop;
 	
 	public Sphere(int x, int y, int diametro, Paint p) {
 		circle = new Circle(x,y,diametro, p);
 		this.diametro = diametro;
+		this.stop=false;
 	}
 	
 	
@@ -69,27 +71,42 @@ public class Sphere implements Serializable {
 	}
 	
 	public void moveVertical(Circle circle1) {
-		if( circle1.getCenterY() == 400) {
+		int z = 0;
+		if(circle1.getCenterY()==0) {
+			z = 2;
+		}
+		if(circle1.getCenterY()==400) {
+			z =3;
+		}
+		if( circle1.getCenterX() == 400) {
 			y = 1;
 		}
-		if(circle1.getCenterY() == 0) {
+		if(circle1.getCenterX() == 0) {
 			y = 0;
 		}
-		if(y == 1) {
-			circle1.setCenterY(circle1.getCenterY()-10);
+		if(y == 1 || z ==2) {
+			circle1.setCenterY(circle1.getCenterY()-5);
 		}
-		if(y == 0) {
-			circle1.setCenterY(circle1.getCenterY()+10);
+		if(y == 0 ||z ==3) {
+			circle1.setCenterY(circle1.getCenterY()+5);
 		}
 	}
 	
-	public void Stop(MouseEvent  event) {
+	public void stopSphere(MouseEvent  event) {
 		double Mx = event.getX();
 		double My = event.getY();
-		double distan = Math.sqrt(((Mx-x)*(Mx-x))+((My-y)*(My-y)));
+		double distan = Math.sqrt(((Mx-x)*(Mx-x))-((My-y)*(My-y)));
+		System.out.println(distan);
 		if(distan <= diametro) {
-			
+			this.stop= true;
 		}
+	}
+
+
+
+	public boolean getStop() {
+		// TODO Auto-generated method stub
+		return stop;
 	}
 
 }

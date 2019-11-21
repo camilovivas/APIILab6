@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 
 import hilos.HiloSphere;
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class Game {
@@ -25,12 +26,16 @@ public class Game {
 	private Sphere [] level1;
 	private Sphere [] level2;
 	private Sphere [] level3;
+	private long timeStart;
+	private double timeEnd;
 	
 	public Game(int level, Group group) {
+		
 		this.level = level;
 		this.group= group;
 		hall = new ControllerHall();
 		initialize();
+		timeStart = System.currentTimeMillis();
 	}
 
 
@@ -77,13 +82,13 @@ public class Game {
 	
 	public void threadLevel1() {
 		HiloSphere hs = new HiloSphere(level1[0]);
-		HiloSphere hs2 = new HiloSphere(level1[1]);
-		HiloSphere hs3 = new HiloSphere(level1[2]);
-		HiloSphere hs4 = new HiloSphere(level1[3]);
+//		HiloSphere hs2 = new HiloSphere(level1[1]);
+//		HiloSphere hs3 = new HiloSphere(level1[2]);
+//		HiloSphere hs4 = new HiloSphere(level1[3]);
 		hs.start();
-		hs2.start();
-		hs3.start();
-		hs4.start();		
+//		hs2.start();
+//		hs3.start();
+//		hs4.start();		
 	}
 	
 //	LEVEL2
@@ -135,6 +140,112 @@ public class Game {
 		}		
 	}
 	
+	public void stop(MouseEvent e) {
+		if(level == 1) {
+			for (int i = 0; i < level1.length; i++) {
+				if(level1[i].getStop() == false) {
+					level1[i].stopSphere(e);
+				}
+			}
+			
+		}
+		if(level == 2) {
+			for (int i = 0; i < level2.length; i++) {
+				if(level2[i].getStop() == false) {
+					level2[i].stopSphere(e);
+				}
+			}
+		}
+		if(level == 3) {
+			for (int i = 0; i < level3.length; i++) {
+				if(level3[i].getStop() == false) {
+					level3[i].stopSphere(e);
+				}
+			}
+		}
+	}
+	
+	public void setTimeEnd(double timeEnd) {
+		this.timeEnd = timeEnd;
+	}
+
+
+	public boolean winner() {
+		boolean retorno = false;
+		int contador =1;
+		if(level == 1) {
+			for (int i = 0; i < level1.length; i++) {
+				if(level1[i].getStop() == true) {
+					contador++;
+				}
+			}
+			if(contador == level1.length) {
+				retorno = true;
+				setTimeEnd(timeWin());
+			}
+		}
+		if(level == 2) {
+			for (int i = 0; i < level2.length; i++) {
+				if(level2[i].getStop() == true) {
+					contador++;
+				}
+			}
+			if(contador == level2.length) {
+				retorno = true;
+				setTimeEnd(timeWin());
+			}
+		}
+		if(level == 3) {
+			for (int i = 0; i < level3.length; i++) {
+				if(level3[i].getStop() == true) {
+					contador++;
+				}
+			}
+			if(contador == level3.length) {
+				retorno = true;
+				setTimeEnd(timeWin());
+			}
+		}
+		return retorno;
+	}
+	
+	public double timeWin() {
+		long fin = System.currentTimeMillis();
+		double time =(double) (fin-timeStart)/1000;
+		return time;
+	}
+	
+	public boolean podium() {
+		boolean retorno = false;
+		if(level == 1) {
+			if(hall.clasificaLevel1(timeEnd)== true) {
+				retorno = true;
+			}
+		}
+		if(level == 2) {
+			if(hall.clasificaLevel2(timeEnd)== true) {
+				retorno = true;
+			}
+		}
+		if(level == 3) {
+			if(hall.clasificaLevel3(timeEnd)== true) {
+				retorno = true;
+			}
+		}
+		return retorno;
+	}
+	
+	public void addHall(String name) {
+		if(level == 1) {
+			hall.addHallLevel1(name, timeEnd);
+		}
+		if(level == 2) {
+			hall.addHallLevel2(name, timeEnd);
+		}
+		if(level == 3) {
+			hall.addHallLevel3(name, timeEnd);
+		}
+	}
 	public void saveGame() {
 		try {
 			FileOutputStream fo = new FileOutputStream(new File(""));

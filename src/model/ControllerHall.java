@@ -19,8 +19,19 @@ public class ControllerHall {
 	}
 	
 //	METHODS LEVEL 1
+	public boolean clasificaLevel1(double time) {
+		boolean retorno = false;
+		for (int i = 0; i < famous1.length; i++) {
+			if(famous1[i]!= null){
+				if(famous1[i].getScore() > time) {
+					retorno = true;
+				}
+			}
+		}
+		return retorno;
+	}
 	
-	public void addHallLevel1(String name, int score) {
+	public void addHallLevel1(String name, double score) {
 		boolean stop = false;
 		Hall h = new Hall(name, score);
 		if(HallLevel1IsFull() == true) {
@@ -75,7 +86,18 @@ public class ControllerHall {
 	}
 	
 //	METHODS LEVEL 2
-	public void addHallLevel2(String name, int score) {
+	public boolean clasificaLevel2(double time) {
+		boolean retorno = false;
+		for (int i = 0; i < famous2.length; i++) {
+			if(famous2[i]!= null){
+				if(famous2[i].getScore() > time) {
+					retorno = true;
+				}
+			}
+		}
+		return retorno;
+	}
+	public void addHallLevel2(String name, double score) {
 		boolean stop = false;
 		Hall h = new Hall(name, score);
 		if(HallLevel1IsFull() == true) {
@@ -130,7 +152,19 @@ public class ControllerHall {
 	}
 	
 //	METHOODS LEVEL 3
-	public void addHallLevel3(String name, int score) {
+	public boolean clasificaLevel3(double time) {
+		boolean retorno = false;
+		for (int i = 0; i < famous3.length; i++) {
+			if(famous3[i]!= null){
+				if(famous3[i].getScore() > time) {
+					retorno = true;
+				}
+			}
+		}
+		return retorno;
+	}
+	
+	public void addHallLevel3(String name, double score) {
 		boolean stop = false;
 		Hall h = new Hall(name, score);
 		if(HallLevel1IsFull() == true) {

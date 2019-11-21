@@ -1,6 +1,5 @@
 package hilos;
 
-import application.Main;
 import model.Sphere;
 
 public class HiloSphere extends Thread{
@@ -12,14 +11,22 @@ public class HiloSphere extends Thread{
 	
 	public void run() {
 		while(true) {
+			if(sphere.getStop()== true) {
+				extracted();
+			}
 			sphere.moveHorizontal(sphere.getCircle());			
+			sphere.moveVertical(sphere.getCircle());			
 			try {
-				sleep(500);
+				sleep(250);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private void extracted() {
+		stop();
 	}
 	
 	

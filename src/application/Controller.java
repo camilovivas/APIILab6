@@ -1,12 +1,15 @@
 package application;
 
+
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -34,7 +37,13 @@ public class Controller {
 			public void handle(MouseEvent event) {
 				MouseButton mb = event.getButton();
 				if(mb == MouseButton.PRIMARY) {
-					stop();
+					stop(event);
+					boolean win = game.winner();
+					if(win == true) {
+						if(game.podium()== true) {
+							winer();
+						}
+					}
 				}
 				
 			}
@@ -107,7 +116,27 @@ public class Controller {
 		//TODO
 	}
 	
-	public void stop() {
+	public void stop(MouseEvent e) {
+		game.stop(e);
+	}
+	
+	public void winer() {
+		Stage st = new Stage();
+		VBox vb = new VBox(2);
+		Text tx = new Text("FELICIDADES GANASTE Y CLASIFIASTE AL PODIUM");
+		Text tx2 = new Text("INGRESA TU NOMBRE");
+		TextField tf = new TextField();
+		Button bt = new Button("listo");
+		bt.setOnAction(e->{
+			String name = tf.getText(); 
+			game.addHall(name);
+			
+			
+		});
+		vb.getChildren().addAll(tx,tx2,tf,bt);
+		Scene sc = new Scene(vb, 300,300);
+		st.setScene(sc);
+		st.show();
 		
 	}
 	
