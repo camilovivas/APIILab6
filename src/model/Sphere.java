@@ -52,23 +52,37 @@ public class Sphere implements Serializable {
 
 
 
-	public void move(Circle circle1) {
-		if( circle1.getLayoutX() == 400) {
+	public void moveHorizontal(Circle circle1) {
+		if( circle1.getCenterX() == 400) {
 			x = 1;
 		}
-		if(circle1.getLayoutX() == 0) {
+		if(circle1.getCenterX() == 0) {
 			x = 0;
 		}
 		if(x == 1) {
-//			circle.setLayoutX(circle.getLayoutX()-10);
 			circle1.setCenterX(circle1.getCenterX()-10);
 		}
 		if(x == 0) {
-//			circle.setLayoutX(circle.getLayoutX()+10);
 			circle1.setCenterX(circle1.getCenterX()+10);
 		}
 		
 	}
+	
+	public void moveVertical(Circle circle1) {
+		if( circle1.getCenterY() == 400) {
+			y = 1;
+		}
+		if(circle1.getCenterY() == 0) {
+			y = 0;
+		}
+		if(y == 1) {
+			circle1.setCenterY(circle1.getCenterY()-10);
+		}
+		if(y == 0) {
+			circle1.setCenterY(circle1.getCenterY()+10);
+		}
+	}
+	
 	public void Stop(MouseEvent  event) {
 		double Mx = event.getX();
 		double My = event.getY();

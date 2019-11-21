@@ -12,8 +12,7 @@ public class HiloSphere extends Thread{
 	
 	public void run() {
 		while(true) {
-			sphere.move(sphere.getCircle());
-			
+			sphere.moveHorizontal(sphere.getCircle());			
 			try {
 				sleep(500);
 			} catch (InterruptedException e) {

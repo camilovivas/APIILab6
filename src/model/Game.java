@@ -1,21 +1,24 @@
 package model;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 import hilos.HiloSphere;
 import javafx.scene.Group;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Game {
+//	COSTANTES
 	public static int SPHERES_LEVEL1 = 4;
 	public static int SPHERES_LEVEL2 = 6;
 	public static int SPHERES_LEVEL3 = 8;
+	
+//	ATRIBUTOS
 	private int level;
 	private ControllerHall hall;
 	private Group group;
@@ -35,7 +38,9 @@ public class Game {
 		if(level == 1) {
 			initLevel1();
 			showLevel1();
+
 			threadLevel1();
+			
 		}
 		if(level == 2) {
 			initLevel2();
@@ -71,10 +76,14 @@ public class Game {
 	}
 	
 	public void threadLevel1() {
-		for (int i = 0; i < level1.length; i++) {			
-			HiloSphere hs = new HiloSphere(level1[i]);
-			hs.start();
-		}		
+		HiloSphere hs = new HiloSphere(level1[0]);
+		HiloSphere hs2 = new HiloSphere(level1[1]);
+		HiloSphere hs3 = new HiloSphere(level1[2]);
+		HiloSphere hs4 = new HiloSphere(level1[3]);
+		hs.start();
+		hs2.start();
+		hs3.start();
+		hs4.start();		
 	}
 	
 //	LEVEL2

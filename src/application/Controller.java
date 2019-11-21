@@ -1,20 +1,16 @@
 package application;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Game;
@@ -32,6 +28,17 @@ public class Controller {
 	
 	public void welcome(Stage s) {
 		group = new Group();
+		group.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				MouseButton mb = event.getButton();
+				if(mb == MouseButton.PRIMARY) {
+					stop();
+				}
+				
+			}
+		});
 		VBox vb = new VBox();
 		Text tx = new Text ("Welcome");
 		Text tx2 = new Text ("Selecciona el nivel que desea jugar");
@@ -54,12 +61,27 @@ public class Controller {
 		HBox h = new HBox();
 		Menu mb1 = new Menu("Archivo");
 		MenuItem mi0 = new MenuItem("Cargar juego");
+		mi0.setOnAction(e->{
+			chargeGame();
+		});
 		MenuItem mi1 = new MenuItem("Guardar juego");
+		mi1.setOnAction(e->{
+			saveGame();
+		});
 		MenuItem mi2 = new MenuItem("Salir");
+		mi2.setOnAction(e->{
+			s.close();
+		});
 		mb1.getItems().addAll(mi0, mi1, mi2);
 		Menu mb2 = new Menu("Ver");
 		MenuItem mi3 = new MenuItem("Mejores puntajes");
+		mi3.setOnAction(e->{
+			showHall();
+		});
 		MenuItem mi4 = new MenuItem("Acerca del juego");
+		mi4.setOnAction(e->{
+			aboveGame();
+		});
 		mb2.getItems().addAll(mi3, mi4);
 		MenuBar mb = new MenuBar(mb1,mb2);
 		h.getChildren().add(mb);
@@ -67,6 +89,26 @@ public class Controller {
 		Scene sc = new Scene(v, 400,400);
 		s.setScene(sc);
 		s.show();
+	}
+	
+	public void chargeGame() {
+		//TODO
+	}
+	
+	public void saveGame() {
+		//TODO
+	}
+	
+	public void showHall(){
+		//TODO
+	}
+	
+	public void aboveGame() {
+		//TODO
+	}
+	
+	public void stop() {
+		
 	}
 	
 	public void create(String level, Stage s) {
